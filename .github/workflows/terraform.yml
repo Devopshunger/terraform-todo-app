@@ -5,11 +5,11 @@ on:
 
 permissions:
   contents: read
+  id-token: Write
 
 jobs:
   test-runner:
-    runs-on: [self-hosted, Windows, X64]
-    
+    runs-on: [self-hosted, Windows, X64]    
 
     steps:
       - name: Test Runner
