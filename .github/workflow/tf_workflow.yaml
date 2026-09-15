@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      -main
+
+  pull_request:
+    branches:
+      -main
+  workflow_dispatch:
+  
+  #Github OIDC Permissions
+  permission:
+      content: read
+      id-token: write
+  Jobs:
+      # Job 1 = terraform check + security + plan
+      
