@@ -5,11 +5,11 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   test-runner:
-    runs-on: [self-hosted, Windows, X64]    
+    runs-on:
+      group: Default
 
     steps:
       - name: Test Runner
