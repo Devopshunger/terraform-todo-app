@@ -1,0 +1,21 @@
+name: Runner Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: Write
+
+jobs:
+  test-runner:
+    runs-on: [self-hosted, Windows, X64]    
+
+    steps:
+      - name: Test Runner
+        shell: powershell
+        run: |
+          Write-Host "Runner is working!"
+          hostname
+          whoami
+          Get-Location
