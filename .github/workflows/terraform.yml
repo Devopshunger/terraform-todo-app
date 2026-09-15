@@ -39,7 +39,7 @@ jobs:
           shell: powershell
           run: |
             az account show
-            az account lsit --output table
+            az account list --output table
 
     
         
