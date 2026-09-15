@@ -1,48 +1,20 @@
-name: Terraform Azure CI-CD
+name: Runner Test
+
 on:
-  push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
-
   workflow_dispatch:
-  
-  # GitHub OIDC permissions
-permissions: 
+
+permissions:
   contents: read
-  id-token: write
-  
+
 jobs:
-   # JOB 1 - TERRAFORM CHECK + SECURITY + PLAN
-  terraform-plan:
-    name: "Terraform Validate, Scan & Plan"
+  test-runner:
     runs-on: [self-hosted, Windows, X64]
 
     steps:
-        # 1. Checkout source code
-        - name: Checkout Repository 
-          uses: actions/checkout@v4
-
-        # 2. Azure Login using OIDC
-        - name: Azure login - OIDC
-          uses: azure/login@v2
-          with:
-            client-id: ${{ secrets.AZURE_CLIENT_ID }}
-            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-        # 3. Verify Azure login
-        - name: verfiy azure login
-          shell: powershell
-          run: |
-            az account show
-            az account list --output table
-
-    
-        
-
-
-          
+      - name: Test Runner
+        shell: powershell
+        run: |
+          Write-Host "Runner is working!"
+          hostname
+          whoami
+          Get-Location
