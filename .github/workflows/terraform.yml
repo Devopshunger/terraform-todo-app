@@ -1,3 +1,4 @@
+name: Terraform Azure CI-CD
 on:
   push:
     branches:
@@ -8,3 +9,40 @@ on:
       - main
 
   workflow_dispatch:
+  
+  # GitHub OIDC permissions
+permissions: 
+  contents: read
+  id-token: write
+  
+jobs:
+   # JOB 1 - TERRAFORM CHECK + SECURITY + PLAN
+  terraform-plan:
+    name: "Terraform Validate, Scan & Plan"
+    runs-on: self-hosted
+
+    steps:
+        # 1. Checkout source code
+        - name: Checkout Repository 
+          uses: actions/checkout@v4
+
+        # 2. Azure Login using OIDC
+        - name: Azure login - OIDC
+          uses: azure/login@v2
+          with:
+            client-id: 33dd2e10-54b5-461c-96fb-fc7aa43ce8b8
+            tenant-id: 8d3ec243-6551-4f75-b4f6-5d26d33cc7d7
+            subscription-id: fd3248c3-0ad4-4c22-98a3-9ce68d0ec4bd
+
+        # 3. Verify Azure login
+        - name: verfiy azure login
+          shell: powershell
+          run: |
+            az account show
+            az account lsit --output table
+
+    
+        
+
+
+          
