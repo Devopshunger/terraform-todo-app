@@ -19,7 +19,7 @@ jobs:
    # JOB 1 - TERRAFORM CHECK + SECURITY + PLAN
   terraform-plan:
     name: "Terraform Validate, Scan & Plan"
-    runs-on: KRIDANSH_RANA
+    runs-on: [self-hosted, Windows, X64]
 
     steps:
         # 1. Checkout source code
