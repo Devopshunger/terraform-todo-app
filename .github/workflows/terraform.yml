@@ -9,6 +9,7 @@ permissions:
 jobs:
   test-runner:
     runs-on: [self-hosted, Windows, X64]
+    
 
     steps:
       - name: Test Runner
