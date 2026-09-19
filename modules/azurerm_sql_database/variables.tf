@@ -1,7 +1,17 @@
-variable "mssqldb_name" {}
-variable "rg_name" {}
-variable "location" {}
-variable "admin_login" {}
-variable "admin_pass" {}
-variable "mssql_name" {}
-variable "server_id" {}
+variable "database_name" {
+  type = string
+}
+
+variable "server_id" {
+  type = string
+}
+
+variable "sku_name" {
+  type    = string
+  default = "S0"
+}
+
+variable "collation" {
+  type    = string
+  default = "SQL_Latin1_General_CP1_CI_AS"
+}
