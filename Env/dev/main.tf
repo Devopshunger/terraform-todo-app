@@ -1,4 +1,3 @@
-
 module "resorce_group" {
   source   = "../../modules/azurerm_resource_group"
   rg_name  = "dev_rg"

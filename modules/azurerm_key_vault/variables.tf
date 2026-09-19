@@ -15,6 +15,6 @@ variable "kv_secret_name" {
 }
 
 variable "kv_secret_value" {
-  type = string
+  type      = string
   sensitive = true
 }

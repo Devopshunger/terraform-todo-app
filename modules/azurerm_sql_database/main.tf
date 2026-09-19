@@ -1,11 +1,11 @@
 resource "azurerm_mssql_database" "db" {
   name      = var.database_name
   server_id = var.server_id
-  sku_name  = "S0"
-  collation = "SQL_Latin1_General_CP1_CI_AS"
+  sku_name  = var.sku_name
+  collation = var.collation
 
   tags = {
-    environment = "dev"
+    environment = "production"
   }
 }
 

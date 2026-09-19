@@ -4,6 +4,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   resource_group_name = var.rg_name
   dns_prefix          = var.dns_prefix
 
+  node_provisioning_profile {
+    mode = "Manual"
+  }
+
   default_node_pool {
     name       = "default"
     node_count = 1
@@ -17,4 +21,18 @@ resource "azurerm_kubernetes_cluster" "aks" {
   tags = {
     Environment = "dev"
   }
+}
+
+output "client_certificate" {
+  value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
+  sensitive = true
+}
+
+output "kube_config" {
+  value     = azurerm_kubernetes_cluster.aks.kube_config_raw
+  sensitive = true
+}
+
+output "cluster_id" {
+  value = azurerm_kubernetes_cluster.aks.id
 }
