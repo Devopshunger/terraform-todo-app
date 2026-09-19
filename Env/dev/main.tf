@@ -32,6 +32,7 @@ module "key_vault" {
   kv_secret_value = "P@ssw0rd!123"
 }
 
+
 module "kubernetes_cluster" {
   depends_on = [module.resorce_group]
   source     = "../../modules/azurerm_kubernetes"

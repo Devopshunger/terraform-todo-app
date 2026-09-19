@@ -19,7 +19,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   tags = {
-    Environment = "Production"
+    Environment = "dev"
   }
 }
 

@@ -8,7 +8,7 @@ resource "azurerm_mssql_server" "sql_server" {
   minimum_tls_version          = "1.2"
 
   tags = {
-    environment = "production"
+    environment = "dev"
   }
 }
 
