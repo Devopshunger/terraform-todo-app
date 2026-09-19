@@ -1,4 +1,4 @@
 variable "subnet" {}
 variable "rg_name" {}
-variable "address_prefix" {}
+variable "address_prefixes" {}
 variable "vnet_name" {}
