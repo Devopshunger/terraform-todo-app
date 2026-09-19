@@ -1,11 +1,14 @@
+data "azurerm_client_config" "current" {}
+
 resource "azurerm_key_vault" "kv" {
-  name                       = var.kv_name
-  location                   = var.location
-  resource_group_name        = var.rg_name
-  rbac_authorization_enabled = false
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
-  sku_name                   = "premium"
-  soft_delete_retention_days = 7
+  name                        = var.kv_name
+  location                    = var.location
+  resource_group_name         = var.rg_name
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  sku_name                    = "standard"
+  soft_delete_retention_days  = 7
+  purge_protection_enabled    = false
+  #enable_rbac_authorization   = false
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
@@ -14,11 +17,13 @@ resource "azurerm_key_vault" "kv" {
     key_permissions = [
       "Create",
       "Get",
+      "List"
     ]
 
     secret_permissions = [
       "Set",
       "Get",
+      "List",
       "Delete",
       "Purge",
       "Recover"
@@ -28,6 +33,14 @@ resource "azurerm_key_vault" "kv" {
 
 resource "azurerm_key_vault_secret" "example" {
   name         = var.kv_secret_name
-  value        = var.kv-secret_value
-  key_vault_id = var.key_valut_id
+  value        = var.kv_secret_value
+  key_vault_id = azurerm_key_vault.kv.id
+}
+
+output "key_vault_id" {
+  value = azurerm_key_vault.kv.id
+}
+
+output "key_vault_name" {
+  value = azurerm_key_vault.kv.name
 }
