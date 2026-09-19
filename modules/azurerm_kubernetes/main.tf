@@ -1,8 +1,12 @@
-resource "azurerm_kubernetes_cluster" "k8" {
-  name                = var.k8_name
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = var.aks_name
   location            = var.location
   resource_group_name = var.rg_name
   dns_prefix          = var.dns_prefix
+
+  node_provisioning_profile {
+    mode = "Manual"
+  }
 
   default_node_pool {
     name       = "default"
@@ -20,12 +24,15 @@ resource "azurerm_kubernetes_cluster" "k8" {
 }
 
 output "client_certificate" {
-  value     = var.client_cer_value
+  value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
-
+  value     = azurerm_kubernetes_cluster.aks.kube_config_raw
   sensitive = true
+}
+
+output "cluster_id" {
+  value = azurerm_kubernetes_cluster.aks.id
 }

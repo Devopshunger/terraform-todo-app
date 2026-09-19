@@ -1,17 +1,18 @@
-resource "azurerm_mssql_server" "mssqldb" {
-  name                         = var.mssqldb_name
-  resource_group_name          = var.rg_name
-  location                     = var.location
-  version                      = "12.0"
-  administrator_login          = var.admin_login
-  administrator_login_password = var.admin_pass
-}
-
-data "azurerm_mssql_database" "mssql" {
-  name      = var.mssql_name
+resource "azurerm_mssql_database" "db" {
+  name      = var.database_name
   server_id = var.server_id
+  sku_name  = var.sku_name
+  collation = var.collation
+
+  tags = {
+    environment = "production"
+  }
 }
 
 output "database_id" {
-  value = data.azurerm_mssql_database.example.id
+  value = azurerm_mssql_database.db.id
+}
+
+output "database_name" {
+  value = azurerm_mssql_database.db.name
 }

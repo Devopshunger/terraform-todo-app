@@ -1,5 +1,15 @@
-variable "k8_name" {}
-variable "location" {}
-variable "rg_name" {}
-variable "dns_prefix" {}
-variable "client_cer_value" {}
+variable "aks_name" {
+  type = string
+}
+
+variable "location" {
+  type = string
+}
+
+variable "rg_name" {
+  type = string
+}
+
+variable "dns_prefix" {
+  type = string
+}

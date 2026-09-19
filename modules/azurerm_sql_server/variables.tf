@@ -1,7 +1,20 @@
-variable "mssql_name" {}
-variable "rg_name" {}
-variable "location" {}
-variable "adm_login" {}
-variable "adm_pass" {}
-variable "login_username" {}
-variable "object_id" {}
+variable "sql_server_name" {
+  type = string
+}
+
+variable "rg_name" {
+  type = string
+}
+
+variable "location" {
+  type = string
+}
+
+variable "admin_login" {
+  type = string
+}
+
+variable "admin_pass" {
+  type      = string
+  sensitive = true
+}
