@@ -27,6 +27,5 @@ module "subnet" {
   subnet        = "dev_subnet"
   rg_name       = "dev_rg"
   vnet_name     = "dev_vnet"
-  location      = "centralindia"
   address_prefix = ["10.0.1.0/24"]
 }
