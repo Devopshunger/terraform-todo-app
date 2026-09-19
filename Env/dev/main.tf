@@ -22,10 +22,10 @@ module "virtual_network" {
 }
 
 module "subnet" {
-  depends_on    = [module.virtual_network]
-  source        = "../../modules/azurerm_subnet"
-  subnet        = "dev_subnet"
-  rg_name       = "dev_rg"
-  vnet_name     = "dev_vnet"
-  address_prefix = ["10.0.1.0/24"]
+  depends_on       = [module.virtual_network]
+  source           = "../../modules/azurerm_subnet"
+  subnet           = "dev_subnet"
+  rg_name          = "dev_rg"
+  vnet_name        = "dev_vnet"
+  address_prefixes = ["10.0.1.0/24"]
 }
