@@ -21,6 +21,6 @@ module "virtual_network" {
   vnet          = "dev_vnet"
   rg_name       = module.resorce_group.rg_name
   location      = module.resorce_group.location
-  address_space = ["10.0.0.1/28"]
+  address_space = ["10.0.0.1/16"]
 
 }
