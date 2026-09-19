@@ -6,6 +6,6 @@ resource "azurerm_storage_account" "stg" {
   account_replication_type = "GRS"
 
   tags = {
-    environment = "staging"
+    environment = "dev"
   }
 }
