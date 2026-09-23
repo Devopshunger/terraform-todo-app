@@ -15,17 +15,18 @@ module "storage_account" {
 module "virtual_network" {
   depends_on    = [module.resorce_group]
   source        = "../../modules/azurerm_virtual_network"
-  vnet          = "dev_vnet"
+  vnet          = "devfd_vnet"
   rg_name       = "dev_rg"
   location      = "centralindia"
   address_space = ["10.0.0.0/16"]
 }
 
+
 module "subnet" {
-  depends_on       = [module.virtual_network]
-  source           = "../../modules/azurerm_subnet"
-  subnet           = "dev_subnet"
-  rg_name          = "dev_rg"
-  vnet_name        = "dev_vnet"
-  address_prefixes = ["10.0.1.0/24"]
+  depends_on           = [module.virtual_network]
+  source               = "../../modules/azurerm_subnet"
+  subnet               = "devfd_subnet"
+  rg_name              = "dev_rg"
+  vnet_name            = "devfd_vnet"
+  address_prefix       = "10.0.1.0/24"
 }
